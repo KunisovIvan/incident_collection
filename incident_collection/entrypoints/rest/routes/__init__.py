@@ -1,0 +1,1 @@
+from incident_collection.entrypoints.rest.routes.problem_route import problem_router

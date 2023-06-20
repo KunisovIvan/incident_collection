@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  incident-collection:
+    build: .
+    container_name: incident-collection
+    restart: always
+    ports:
+      - "8300:8300"
+    depends_on:
+      - incident-collection-mongo
+    env_file:
+      - .env
+
+  incident-collection-mongo:
+    container_name: incident-collection-mongo
+    image: mongo
+    command: "--wiredTigerCacheSizeGB=3"
+    restart: always
+    ports:
+      - "27017:27017"
+    logging:
+      options:
+        max-size: '200m'
